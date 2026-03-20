@@ -24,7 +24,7 @@
                    class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all max-w-md">
         </div>
 
-        {{-- Users Table --}}
+        {{-- Users Table  --}}
         @if($users->count() > 0)
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <div class="overflow-x-auto">
