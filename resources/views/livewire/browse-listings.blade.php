@@ -29,24 +29,24 @@
     </div>
 
     {{-- Search & Filters --}}
-    <div class="sticky top-0 z-30 bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+    <div class="sticky top-0 z-30 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex flex-col sm:flex-row gap-3">
                 <div class="relative flex-1">
-                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                     <input type="text" wire:model.live.debounce.300ms="search"
                            placeholder="ፈልግ... (Search items)"
-                           class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all">
+                           class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-gray-100 focus:bg-white dark:focus:bg-gray-600 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all">
                 </div>
-                <select wire:model.live="filterCondition" class="px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all">
+                <select wire:model.live="filterCondition" class="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-gray-100 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all">
                     <option value="">ሁሉም ሁኔታ (All Conditions)</option>
                     <option value="New">አዲስ (New)</option>
                     <option value="Used">ያገለገለ (Used)</option>
                     <option value="Bonda">ቦንዳ (Bonda)</option>
                 </select>
-                <select wire:model.live="filterNeighborhood" class="px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all">
+                <select wire:model.live="filterNeighborhood" class="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 dark:text-gray-100 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transition-all">
                     <option value="">ሁሉም ሰፈር (All Areas)</option>
                     <option value="Kezira">Kezira (ገዚራ)</option>
                     <option value="Megala">Megala (መገላ)</option>
@@ -63,13 +63,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @if($listings->isEmpty())
             <div class="text-center py-20">
-                <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-indigo-50 mb-6">
+                <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-indigo-50 dark:bg-indigo-900/50 mb-6">
                     <svg class="w-12 h-12 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-700">ምንም እቃ አልተገኘም</h3>
-                <p class="text-gray-400 mt-2">No items found. Be the first to list something!</p>
+                <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-300">ምንም እቃ አልተገኘም</h3>
+                <p class="text-gray-400 dark:text-gray-500 mt-2">No items found. Be the first to list something!</p>
                 @auth
                     <a href="{{ route('listing.create') }}" class="mt-6 inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition">
                         ➕ እቃ ይጨምሩ (Add Item)
@@ -80,15 +80,15 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 @foreach($listings as $listing)
                     <a href="{{ route('listing.show', $listing) }}" wire:navigate
-                       class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:border-indigo-200 transition-all duration-300 transform hover:-translate-y-1">
+                       class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-600 transition-all duration-300 transform hover:-translate-y-1">
                         {{-- Image --}}
-                        <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+                        <div class="relative aspect-[4/3] bg-gray-100 dark:bg-gray-700 overflow-hidden">
                             @if($listing->images && count($listing->images) > 0)
                                 <img src="{{ asset('storage/' . $listing->images[0]) }}"
                                      alt="{{ $listing->title }}"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
-                                <div class="w-full h-full flex items-center justify-center text-gray-300">
+                                <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-500">
                                     <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
@@ -102,15 +102,15 @@
                         </div>
                         {{-- Info --}}
                         <div class="p-4">
-                            <h3 class="font-bold text-gray-800 text-lg truncate group-hover:text-indigo-600 transition-colors">
+                            <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                 {{ $listing->title }}
                             </h3>
                             <div class="flex items-center justify-between mt-2">
-                                <span class="text-xl font-extrabold text-indigo-600">
-                                    {{ number_format($listing->price) }} <span class="text-sm font-normal text-gray-400">ETB</span>
+                                <span class="text-xl font-extrabold text-indigo-600 dark:text-indigo-400">
+                                    {{ number_format($listing->price) }} <span class="text-sm font-normal text-gray-400 dark:text-gray-500">ETB</span>
                                 </span>
                             </div>
-                            <div class="flex items-center gap-2 mt-3 text-sm text-gray-500">
+                            <div class="flex items-center gap-2 mt-3 text-sm text-gray-500 dark:text-gray-400">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>

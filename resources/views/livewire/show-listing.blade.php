@@ -1,14 +1,14 @@
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {{-- Back Button --}}
-        <a href="{{ route('home') }}" wire:navigate class="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium mb-6 group">
+        <a href="{{ route('home') }}" wire:navigate class="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mb-6 group">
             <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
             ወደ ዝርዝር ተመለስ (Back to Listings)
         </a>
 
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/50 overflow-hidden">
             {{-- Image Gallery --}}
             <div class="relative" x-data="{ activeImage: 0 }">
                 @if($listing->images && count($listing->images) > 0)
@@ -47,8 +47,8 @@
                         @endif
                     </div>
                 @else
-                    <div class="aspect-[16/9] bg-gray-100 flex items-center justify-center">
-                        <svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="aspect-[16/9] bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                        <svg class="w-24 h-24 text-gray-300 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
                     </div>
@@ -68,14 +68,14 @@
             <div class="p-6 sm:p-8 lg:p-10">
                 <div class="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">{{ $listing->title }}</h1>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white">{{ $listing->title }}</h1>
                         <div class="flex items-center gap-3 mt-3">
                             <span class="px-4 py-1.5 rounded-full text-sm font-bold
-                                {{ $listing->condition === 'New' ? 'bg-emerald-100 text-emerald-700' : ($listing->condition === 'Used' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700') }}">
+                                {{ $listing->condition === 'New' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : ($listing->condition === 'Used' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300') }}">
                                 {{ $listing->condition === 'New' ? 'አዲስ (New)' : ($listing->condition === 'Used' ? 'ያገለገለ (Used)' : 'ቦንዳ (Bonda)') }}
                             </span>
-                            <span class="text-gray-400">•</span>
-                            <span class="flex items-center gap-1 text-gray-500">
+                            <span class="text-gray-400 dark:text-gray-500">•</span>
+                            <span class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -85,29 +85,29 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <p class="text-4xl font-extrabold text-indigo-600">{{ number_format($listing->price) }} <span class="text-base font-medium text-gray-400">ETB</span></p>
+                        <p class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">{{ number_format($listing->price) }} <span class="text-base font-medium text-gray-400 dark:text-gray-500">ETB</span></p>
                     </div>
                 </div>
 
                 {{-- Description --}}
                 @if($listing->description)
-                    <div class="mt-8 border-t border-gray-100 pt-6">
-                        <h2 class="text-lg font-bold text-gray-800 mb-3">ዝርዝር መግለጫ (Description)</h2>
-                        <p class="text-gray-600 leading-relaxed whitespace-pre-line">{{ $listing->description }}</p>
+                    <div class="mt-8 border-t border-gray-100 dark:border-gray-700 pt-6">
+                        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-3">ዝርዝር መግለጫ (Description)</h2>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">{{ $listing->description }}</p>
                     </div>
                 @endif
 
                 {{-- Seller Info & Contact --}}
-                <div class="mt-8 border-t border-gray-100 pt-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-4">ሻጭ መረጃ (Seller Info)</h2>
-                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6">
+                <div class="mt-8 border-t border-gray-100 dark:border-gray-700 pt-6">
+                    <h2 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">ሻጭ መረጃ (Seller Info)</h2>
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-2xl p-6">
                         <div class="flex items-center gap-4">
                             <div class="w-14 h-14 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
                                 {{ strtoupper(substr($listing->user->name ?? 'U', 0, 1)) }}
                             </div>
                             <div>
-                                <p class="font-bold text-gray-800 text-lg">{{ $listing->user->name ?? 'Unknown' }}</p>
-                                <p class="text-sm text-gray-500">Posted {{ $listing->created_at->diffForHumans() }}</p>
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-lg">{{ $listing->user->name ?? 'Unknown' }}</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Posted {{ $listing->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
 
@@ -121,7 +121,7 @@
                                     ደውሉ (Call)
                                 </a>
                                 <a href="sms:{{ $listing->phone_number }}"
-                                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-indigo-600 border-2 border-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition">
+                                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border-2 border-indigo-600 dark:border-indigo-500 rounded-xl font-bold hover:bg-indigo-50 dark:hover:bg-gray-700 transition">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                     </svg>
@@ -133,7 +133,7 @@
                 </div>
 
                 {{-- Posted date --}}
-                <div class="mt-6 text-center text-sm text-gray-400">
+                <div class="mt-6 text-center text-sm text-gray-400 dark:text-gray-500">
                     Listed on {{ $listing->created_at->format('M d, Y \a\t h:i A') }}
                 </div>
             </div>
